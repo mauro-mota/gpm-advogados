@@ -1,4 +1,4 @@
-/* GPM Advogados Associados · versão 2 */
+/* GPM Advogados Associados */
 
 // WhatsApp de cada sócia (código do país + DDD + número, só dígitos).
 const WHATSAPP = {
