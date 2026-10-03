@@ -7,7 +7,7 @@
   <meta name="description" content="Escritório de advocacia no Recife conduzido por Maria Eduarda Albuquerque e Ana Beatriz Leite, especialistas em Família e Sucessões. Atuação nacional.">
   <meta name="theme-color" content="#0c1a1d">
   <link rel="icon" href="assets/simbolo.svg" type="image/svg+xml">
-  <link rel="preload" href="fonts/satoshi-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/clash-display-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/satoshi-500.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/duas-juntas-quadro.jpg" as="image">
   <link rel="stylesheet" href="styles.css">
@@ -17,7 +17,7 @@
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <!-- símbolo GPM redesenhado: decágono com pentágono inscrito -->
+    <!-- símbolo GPM: decágono com pentágono inscrito -->
     <symbol id="simbolo" viewBox="0 0 100 100">
       <g class="s-tri">
         <polygon points="50,4 77.04,12.79 93.75,35.79" />
@@ -27,8 +27,8 @@
         <polygon points="6.25,35.79 22.96,12.79 50,4" />
       </g>
       <g class="s-band">
-        <polygon points="50,4 77.04,12.79 93.75,35.79 93.75,64.21 77.04,87.21 50,96 22.96,87.21 6.25,64.21 6.25,35.79 22.96,12.79" />
-        <polygon points="50,4 93.75,35.79 77.04,87.21 22.96,87.21 6.25,35.79" />
+        <polygon pathLength="1" points="50,4 77.04,12.79 93.75,35.79 93.75,64.21 77.04,87.21 50,96 22.96,87.21 6.25,64.21 6.25,35.79 22.96,12.79" />
+        <polygon pathLength="1" points="50,4 93.75,35.79 77.04,87.21 22.96,87.21 6.25,35.79" />
       </g>
     </symbol>
     <!-- Phosphor Icons (MIT), regular -->
@@ -36,6 +36,7 @@
     <symbol id="i-arrow" viewBox="0 0 256 256"><path fill="currentColor" d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></symbol>
   </svg>
 
+  <div class="top-sentinel" aria-hidden="true"></div>
   <header class="top">
     <div class="top-row">
       <a class="lockup" href="#inicio" aria-label="GPM Advogados Associados, início">
@@ -57,189 +58,208 @@
       </a>
     </div>
   </header>
-  <div class="top-sentinel" aria-hidden="true"></div>
 
   <main id="conteudo">
-    <!-- Abertura -->
-    <section class="hero" id="inicio" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <h1 id="hero-title">Nem tudo precisa virar processo.</h1>
-        <p class="lede">Escritório conduzido por duas especialistas em Família e Sucessões. Ouvimos, orientamos e buscamos a solução, com ou sem processo.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#contato">
-            <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
-            <span>Conversar no WhatsApp</span>
-          </a>
-          <a class="btn btn-ghost" href="#socias">
-            <span>Conhecer as sócias</span>
-            <svg class="ico ico-sm" aria-hidden="true"><use href="#i-arrow"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <figure class="hero-figure">
-        <div class="decagon">
+    <!-- Abertura: a foto das duas abre do decágono para a tela inteira com a rolagem -->
+    <div class="hero-stage">
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <figure class="hero-media" aria-hidden="false">
           <img src="assets/img/duas-juntas-quadro.jpg" alt="Maria Eduarda Albuquerque e Ana Beatriz Leite, sócias da GPM, no escritório com vista para o rio." width="1100" height="1016" fetchpriority="high">
-        </div>
-        <svg class="decagon-band" viewBox="0 0 100 100" aria-hidden="true">
-          <polygon points="50,0.6 79.1,10.06 97.1,34.82 97.1,65.18 79.1,89.94 50,99.4 20.9,89.94 2.9,65.18 2.9,34.82 20.9,10.06" />
+        </figure>
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <svg class="hero-ring" viewBox="0 0 100 100" aria-hidden="true">
+          <polygon pathLength="1" points="50,1 79.1,10.46 97.1,35.22 97.1,65.78 79.1,90.54 50,99 20.9,90.54 2.9,65.78 2.9,35.22 20.9,10.46" />
         </svg>
-      </figure>
-    </section>
+        <div class="hero-top-scrim" aria-hidden="true"></div>
+
+        <div class="hero-copy">
+          <h1 id="hero-title">
+            <span class="line"><span>Nem tudo precisa</span></span>
+            <span class="line"><span>virar processo.</span></span>
+          </h1>
+          <p class="lede">Escritório conduzido por duas especialistas em Família e Sucessões. Ouvimos, orientamos e buscamos a solução, com ou sem processo.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contato">
+              <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
+              <span>Conversar no WhatsApp</span>
+            </a>
+            <a class="btn btn-ghost" href="#socias">
+              <span>Conhecer as sócias</span>
+              <svg class="ico ico-sm" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
 
     <!-- Sócias -->
     <section class="partners" id="socias" aria-labelledby="partners-title">
       <div class="wrap">
-        <div class="partners-intro reveal">
-          <h2 id="partners-title">Duas sócias, um atendimento pessoal.</h2>
-          <p>Maria Eduarda e Ana Beatriz são pós-graduadas em Direito de Família e Sucessões pela UFPE. Cada caso é acompanhado por elas, de forma ética e transparente.</p>
+        <div class="partners-intro">
+          <h2 id="partners-title" class="reveal-mask">Duas sócias, um atendimento pessoal.</h2>
+          <p class="reveal">Maria Eduarda e Ana Beatriz são pós-graduadas em Direito de Família e Sucessões pela UFPE. Cada caso é acompanhado por elas, de forma ética e transparente.</p>
         </div>
 
         <div class="people">
-          <article class="person reveal">
-            <div class="person-photo">
+          <article class="person person-a">
+            <div class="person-photo reveal">
               <img src="assets/img/maria-eduarda.jpg" alt="Retrato de Maria Eduarda Martins Mota e Albuquerque." width="882" height="1100" loading="lazy">
             </div>
-            <h3>Maria Eduarda Martins Mota e Albuquerque</h3>
-            <p class="oab">Sócia · OAB/PE nº 47.248</p>
-            <ul class="cv">
-              <li>Graduada em Direito pela UNICAP</li>
-              <li>Pós-graduada em Direito de Família e Sucessões pela UFPE</li>
-              <li>Pós-graduada em Direito Civil e Processual Civil pela FGV</li>
-            </ul>
+            <div class="person-text">
+              <h3 class="reveal-mask">Maria Eduarda Martins Mota e Albuquerque</h3>
+              <p class="oab reveal">Sócia · OAB/PE nº 47.248</p>
+              <ul class="cv reveal">
+                <li>Graduada em Direito pela UNICAP</li>
+                <li>Pós-graduada em Direito de Família e Sucessões pela UFPE</li>
+                <li>Pós-graduada em Direito Civil e Processual Civil pela FGV</li>
+              </ul>
+            </div>
           </article>
 
-          <article class="person person-offset reveal">
-            <div class="person-photo">
+          <article class="person person-b">
+            <div class="person-photo reveal">
               <img src="assets/img/ana-beatriz.jpg" alt="Retrato de Ana Beatriz Guerra Leite." width="882" height="1100" loading="lazy">
             </div>
-            <h3>Ana Beatriz Guerra Leite</h3>
-            <p class="oab">Sócia · OAB/PE nº 46.943</p>
-            <ul class="cv">
-              <li>Graduada em Direito pela Faculdade Marista do Recife</li>
-              <li>Pós-graduada em Direito de Família e Sucessões pela UFPE</li>
-              <li>Pós-graduanda em Direito Médico e da Saúde pela UNICAP</li>
-            </ul>
+            <div class="person-text">
+              <h3 class="reveal-mask">Ana Beatriz Guerra Leite</h3>
+              <p class="oab reveal">Sócia · OAB/PE nº 46.943</p>
+              <ul class="cv reveal">
+                <li>Graduada em Direito pela Faculdade Marista do Recife</li>
+                <li>Pós-graduada em Direito de Família e Sucessões pela UFPE</li>
+                <li>Pós-graduanda em Direito Médico e da Saúde pela UNICAP</li>
+              </ul>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Caminhos -->
+    <!-- Caminhos: as três palavras empilham conforme a página rola -->
     <section class="paths" id="caminhos" aria-labelledby="paths-title">
       <div class="wrap">
-        <h2 id="paths-title" class="reveal">O processo é um caminho, não o único.</h2>
-        <ol class="path-list">
-          <li class="path reveal">
+        <h2 id="paths-title" class="reveal-mask">O processo é um caminho, não o único.</h2>
+      </div>
+      <ol class="path-list">
+        <li class="path" style="--i:0">
+          <div class="wrap path-row">
             <h3>Consultoria</h3>
             <p>Orientação para entender seus direitos e decidir com segurança, antes que o problema cresça.</p>
-          </li>
-          <li class="path reveal">
+          </div>
+        </li>
+        <li class="path" style="--i:1">
+          <div class="wrap path-row">
             <h3>Acordo</h3>
             <p>Uma solução negociada fora da Justiça, quando esse é o melhor caminho para você.</p>
-          </li>
-          <li class="path reveal">
+          </div>
+        </li>
+        <li class="path" style="--i:2">
+          <div class="wrap path-row">
             <h3>Processo</h3>
             <p>Quando é preciso ir à Justiça, conduzimos a ação com transparência.</p>
-          </li>
-        </ol>
-      </div>
+          </div>
+        </li>
+      </ol>
     </section>
 
     <!-- Áreas -->
     <section class="areas" id="areas" aria-labelledby="areas-title">
       <div class="wrap">
-        <h2 id="areas-title" class="reveal">Em que podemos ajudar</h2>
-        <div class="areas-grid">
-          <article class="tile-main reveal">
-            <svg class="tile-mark" aria-hidden="true"><use href="#simbolo"/></svg>
-            <h3>Família e Sucessões</h3>
-            <p class="tile-note">A especialidade das duas sócias.</p>
-            <ul class="tile-list">
-              <li>Divórcio e separação</li>
-              <li>Guarda e pensão dos filhos</li>
-              <li>União estável</li>
-              <li>Reconhecimento de paternidade</li>
-              <li>Inventário e partilha</li>
-              <li>Testamento e planejamento</li>
-            </ul>
-          </article>
-          <ul class="area-rows">
-            <li class="area-row reveal">
-              <h3>Saúde</h3>
-              <p>Plano que negou exame, cirurgia ou remédio. Reajuste de mensalidade. Acesso a tratamento.</p>
-            </li>
-            <li class="area-row reveal">
-              <h3>Cível</h3>
-              <p>Contratos e acordos. Indenizações por danos. Aluguel e imóveis.</p>
-            </li>
-            <li class="area-row reveal">
-              <h3>Trabalhista</h3>
-              <p>Demissão e verbas rescisórias. Horas extras não pagas. Assédio e acidente de trabalho.</p>
-            </li>
-            <li class="area-row reveal">
-              <h3>Consumidor</h3>
-              <p>Cobrança indevida e nome negativado. Produto ou serviço com defeito. Bancos, telefonia e voos.</p>
-            </li>
+        <h2 id="areas-title" class="reveal-mask">Em que podemos ajudar</h2>
+      </div>
+
+      <article class="familia">
+        <svg class="familia-mark" aria-hidden="true"><use href="#simbolo"/></svg>
+        <div class="wrap familia-grid">
+          <div class="familia-copy">
+            <h3 class="reveal-mask">Família e Sucessões</h3>
+            <p class="tile-note reveal">A especialidade das duas sócias.</p>
+          </div>
+          <ul class="tile-list">
+            <li class="reveal">Divórcio e separação</li>
+            <li class="reveal">Guarda e pensão dos filhos</li>
+            <li class="reveal">União estável</li>
+            <li class="reveal">Reconhecimento de paternidade</li>
+            <li class="reveal">Inventário e partilha</li>
+            <li class="reveal">Testamento e planejamento</li>
           </ul>
         </div>
+      </article>
+
+      <div class="wrap">
+        <ul class="area-rows">
+          <li class="area-row">
+            <h3 class="reveal-mask">Saúde</h3>
+            <p class="reveal">Plano que negou exame, cirurgia ou remédio. Reajuste de mensalidade. Acesso a tratamento.</p>
+          </li>
+          <li class="area-row">
+            <h3 class="reveal-mask">Cível</h3>
+            <p class="reveal">Contratos e acordos. Indenizações por danos. Aluguel e imóveis.</p>
+          </li>
+          <li class="area-row">
+            <h3 class="reveal-mask">Trabalhista</h3>
+            <p class="reveal">Demissão e verbas rescisórias. Horas extras não pagas. Assédio e acidente de trabalho.</p>
+          </li>
+          <li class="area-row">
+            <h3 class="reveal-mask">Consumidor</h3>
+            <p class="reveal">Cobrança indevida e nome negativado. Produto ou serviço com defeito. Bancos, telefonia e voos.</p>
+          </li>
+        </ul>
       </div>
     </section>
 
     <!-- Contato -->
     <section class="contact" id="contato" aria-labelledby="contact-title">
-      <div class="wrap contact-grid">
-        <form class="composer reveal" id="composer" aria-labelledby="contact-title">
-          <h2 id="contact-title">Conte o que está acontecendo.</h2>
-          <p class="composer-sub">Escolha o assunto e com quem quer falar. A mensagem já vai pronta para o WhatsApp.</p>
+      <div class="wrap">
+        <h2 id="contact-title" class="reveal-mask">Conte o que está acontecendo.</h2>
+        <div class="contact-grid">
+          <form class="composer reveal" id="composer" aria-labelledby="contact-title">
+            <p class="composer-sub">Escolha o assunto e com quem quer falar. A mensagem já vai pronta para o WhatsApp.</p>
 
-          <fieldset class="topics">
-            <legend class="sr-only">Assunto</legend>
-            <label class="topic"><input type="radio" name="assunto" value="Família"><span>Família</span></label>
-            <label class="topic"><input type="radio" name="assunto" value="Herança"><span>Herança</span></label>
-            <label class="topic"><input type="radio" name="assunto" value="Saúde"><span>Saúde</span></label>
-            <label class="topic"><input type="radio" name="assunto" value="Cível"><span>Cível</span></label>
-            <label class="topic"><input type="radio" name="assunto" value="Trabalho"><span>Trabalho</span></label>
-            <label class="topic"><input type="radio" name="assunto" value="Consumidor"><span>Consumidor</span></label>
-            <label class="topic"><input type="radio" name="assunto" value="Outro assunto"><span>Outro assunto</span></label>
-          </fieldset>
+            <fieldset class="topics">
+              <legend class="sr-only">Assunto</legend>
+              <label class="topic"><input type="radio" name="assunto" value="Família"><span>Família</span></label>
+              <label class="topic"><input type="radio" name="assunto" value="Herança"><span>Herança</span></label>
+              <label class="topic"><input type="radio" name="assunto" value="Saúde"><span>Saúde</span></label>
+              <label class="topic"><input type="radio" name="assunto" value="Cível"><span>Cível</span></label>
+              <label class="topic"><input type="radio" name="assunto" value="Trabalho"><span>Trabalho</span></label>
+              <label class="topic"><input type="radio" name="assunto" value="Consumidor"><span>Consumidor</span></label>
+              <label class="topic"><input type="radio" name="assunto" value="Outro assunto"><span>Outro assunto</span></label>
+            </fieldset>
 
-          <fieldset class="topics partners-pick">
-            <legend class="pick-label">Falar com</legend>
-            <label class="topic"><input type="radio" name="socia" value="maria" checked><span>Maria Eduarda</span></label>
-            <label class="topic"><input type="radio" name="socia" value="ana"><span>Ana Beatriz</span></label>
-          </fieldset>
+            <fieldset class="topics partners-pick">
+              <legend class="pick-label">Falar com</legend>
+              <label class="topic"><input type="radio" name="socia" value="maria" checked><span>Maria Eduarda</span></label>
+              <label class="topic"><input type="radio" name="socia" value="ana"><span>Ana Beatriz</span></label>
+            </fieldset>
 
-          <div class="bubble" aria-live="polite">
-            <p class="js-preview">Olá! Gostaria de orientação sobre um caso.</p>
-          </div>
+            <div class="bubble" aria-live="polite">
+              <p class="js-preview">Olá! Gostaria de orientação sobre um caso.</p>
+            </div>
 
-          <a class="btn btn-primary btn-lg js-wa js-composer-wa" href="#contato" data-topic="">
-            <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
-            <span>Conversar no WhatsApp</span>
-          </a>
-        </form>
+            <a class="btn btn-primary btn-lg js-wa js-composer-wa" href="#contato" data-topic="">
+              <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
+              <span>Conversar no WhatsApp</span>
+            </a>
+          </form>
 
-        <dl class="facts reveal">
-          <div><dt>Maria Eduarda</dt><dd><a href="https://wa.me/5581999993446" target="_blank" rel="noopener">(81) 99999-3446</a></dd></div>
-          <div><dt>Ana Beatriz</dt><dd><a href="https://wa.me/5581997106464" target="_blank" rel="noopener">(81) 99710-6464</a></dd></div>
-          <div><dt>E-mail</dt><dd><a href="mailto:gpm.advocaciaeconsultoria@gmail.com">gpm.advocaciaeconsultoria@gmail.com</a></dd></div>
-          <div><dt>Atuação</dt><dd>Recife e todo o Brasil</dd></div>
-        </dl>
+          <dl class="facts">
+            <div class="reveal"><dt>Maria Eduarda</dt><dd><a class="fact-big" href="https://wa.me/5581999993446" target="_blank" rel="noopener">(81) 99999-3446</a></dd></div>
+            <div class="reveal"><dt>Ana Beatriz</dt><dd><a class="fact-big" href="https://wa.me/5581997106464" target="_blank" rel="noopener">(81) 99710-6464</a></dd></div>
+            <div class="reveal"><dt>E-mail</dt><dd><a href="mailto:gpm.advocaciaeconsultoria@gmail.com">gpm.advocaciaeconsultoria@gmail.com</a></dd></div>
+            <div class="reveal"><dt>Atuação</dt><dd class="fact-big">Recife e todo o Brasil</dd></div>
+          </dl>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="foot">
-    <div class="wrap foot-grid">
-      <a class="lockup" href="#inicio" aria-label="GPM Advogados Associados, voltar ao início">
-        <svg class="lockup-mark" aria-hidden="true"><use href="#simbolo"/></svg>
-        <span class="lockup-text">
-          <span class="lockup-gpm">GPM</span>
-          <span class="lockup-sub">Advogados Associados</span>
-        </span>
+    <div class="wrap">
+      <a class="foot-mark reveal-mask" href="#inicio" aria-label="GPM Advogados Associados, voltar ao início">
+        <svg class="foot-symbol" aria-hidden="true"><use href="#simbolo"/></svg>
+        <span>GPM Advogados Associados</span>
       </a>
-      <div class="foot-legal">
+      <div class="foot-legal reveal">
         <p>Maria Eduarda Martins Mota e Albuquerque, OAB/PE nº 47.248<br>Ana Beatriz Guerra Leite, OAB/PE nº 46.943</p>
         <p>Conteúdo informativo, conforme o Provimento 205/2021 do Conselho Federal da OAB.</p>
       </div>
