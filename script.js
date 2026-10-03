@@ -87,6 +87,24 @@ if ("IntersectionObserver" in window) {
     obs.disconnect();
   }, { threshold: 0.25 }).observe(familia);
 
+  /* abertura no celular: a lente só pode começar abaixo dos botões; --lens-k encolhe o decágono quando falta altura */
+  const hero = document.querySelector(".hero");
+  const heroCopy = document.querySelector(".hero-copy");
+  const portrait = window.matchMedia("(max-width: 767px) and (orientation: portrait)");
+  const fitLens = () => {
+    if (!portrait.matches) { hero.style.removeProperty("--lens-k"); return; }
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const copyBottom = heroCopy.offsetTop + heroCopy.offsetHeight;
+    const gap = 20; // folga entre o último botão e o topo da lente
+    const available = vh - 0.06 * vw - copyBottom - gap; // a lente encosta a 6vw do rodapé
+    const k = Math.min(1, Math.max(0, available / 2 / (0.42 * vw)));
+    hero.style.setProperty("--lens-k", k.toFixed(3));
+  };
+  fitLens();
+  new ResizeObserver(fitLens).observe(heroCopy);
+  window.addEventListener("resize", fitLens, { passive: true });
+  document.fonts?.ready.then(fitLens);
+
   /* topo com linha depois de rolar */
   const topBar = document.querySelector(".top");
   new IntersectionObserver(([entry]) => {
@@ -103,28 +121,11 @@ if ("IntersectionObserver" in window) {
   new IntersectionObserver(([entry]) => { contactVisible = entry.isIntersecting; update(); }, { threshold: 0.1 })
     .observe(document.querySelector(".contact"));
 
-  /* caminhos: quando uma palavra se fixa, as anteriores ficam empilhadas (estado) */
-  const paths = [...document.querySelectorAll(".path")];
-  paths.forEach((row, i) => {
-    if (i === 0) return;
-    // sentinela fixa no fluxo, logo antes da linha; quando ela passa do ponto de fixação, a linha fixou
-    const sentinel = document.createElement("li");
-    sentinel.setAttribute("aria-hidden", "true");
-    sentinel.style.cssText = "height:1px;margin-top:-1px;list-style:none";
-    row.parentElement.insertBefore(sentinel, row);
-    const stickyTop = () => parseFloat(getComputedStyle(row).top) || 0;
-    let obs;
-    const observe = () => {
-      obs?.disconnect();
-      obs = new IntersectionObserver(([entry]) => {
-        const stuck = !entry.isIntersecting && entry.boundingClientRect.top < stickyTop();
-        paths[i - 1].classList.toggle("stacked", stuck);
-      }, { rootMargin: `-${Math.round(stickyTop())}px 0px 0px 0px`, threshold: 0 });
-      obs.observe(sentinel);
-    };
-    observe();
-    window.addEventListener("resize", observe, { passive: true });
-  });
+  /* caminhos: a linha que cruza o meio da tela é a "em leitura" */
+  const current = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => entry.target.classList.toggle("current", entry.isIntersecting));
+  }, { rootMargin: "-42% 0px -42% 0px", threshold: 0 });
+  document.querySelectorAll(".path").forEach((row) => current.observe(row));
 } else {
   document.querySelectorAll(".reveal, .reveal-mask").forEach((el) => el.classList.add("in"));
   document.querySelector(".familia").classList.add("in");

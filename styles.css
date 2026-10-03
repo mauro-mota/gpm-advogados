@@ -367,39 +367,46 @@ section > .wrap > h2, .partners-intro h2, .contact h2 {
 @keyframes drift-up { from { transform: translateY(0); } to { transform: translateY(-12%); } }
 @keyframes drift-down { from { transform: translateY(-12%); } to { transform: translateY(0); } }
 
-/* ---------- Caminhos: índice que empilha ---------- */
+/* ---------- Caminhos: três linhas, a palavra entra de lado com a rolagem e a linha em leitura acende ---------- */
 
-.paths {
-  padding-top: clamp(80px, 10vw, 144px);
-  --band: calc(var(--index) * 0.95 + 2.75rem);
-}
+.paths { padding-top: clamp(80px, 10vw, 144px); padding-bottom: clamp(16px, 3vw, 48px); }
 .paths > .wrap > h2 { margin-bottom: clamp(32px, 5vw, 72px); }
-.path-list { padding-bottom: 10vh; }
-.path {
-  position: sticky;
-  top: calc(var(--top-h) + var(--i) * var(--band));
-  min-height: 56vh;
-  background: var(--bg);
-  border-top: 1px solid var(--line);
-}
+.path { border-top: 1px solid var(--line); }
+.path:last-child { border-bottom: 1px solid var(--line); }
 .path-row {
-  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: 12px clamp(24px, 4vw, 64px); align-items: end;
-  padding-top: 1.25rem; padding-bottom: 1.5rem;
+  display: grid; grid-template-columns: 2.5rem minmax(0, 7fr) minmax(0, 5fr);
+  gap: 12px 20px; align-items: end;
+  padding-top: clamp(20px, 3vw, 36px); padding-bottom: clamp(24px, 3vw, 40px);
+}
+.path-n {
+  font-family: var(--display); font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.08em;
+  color: var(--ink-soft); padding-bottom: 0.45em;
+  transition: color 360ms ease;
 }
 .path h3 {
   font-size: var(--index);
   line-height: 0.95; letter-spacing: -0.025em;
   color: var(--ink);
-  transition: color 360ms ease, transform 420ms var(--ease-out);
+  transition: color 360ms ease, translate 520ms var(--ease-out);
 }
-.path p { max-width: 38ch; font-size: 1.125rem; color: var(--ink-soft); padding-bottom: 0.35em; }
-.path.stacked h3 { color: var(--ink-soft); }
-.path.stacked p { opacity: 0.55; transition: opacity 300ms ease; }
+.path p { max-width: 38ch; font-size: 1.125rem; color: var(--ink-soft); padding-bottom: 0.35em; margin-left: clamp(4px, 3vw, 44px); transition: color 360ms ease; }
+/* a linha em leitura (no meio da tela, ou sob o mouse) acende; as outras recuam */
+.path.current .path-n, .path.current h3 { color: var(--accent); }
+.path.current p { color: var(--ink); }
 @media (hover: hover) and (pointer: fine) {
-  .path:hover h3 { color: var(--accent); transform: translateX(10px); }
+  .path:hover .path-n, .path:hover h3 { color: var(--accent); }
+  .path:hover p { color: var(--ink); }
+  .path:hover h3 { translate: 0.12em 0; }
 }
-
+/* entrada: a palavra desliza da direita e o texto sobe, amarrados à rolagem (reversível); sem suporte, a cascata de revelar */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .path h3 { animation: path-word linear both; animation-timeline: view(); animation-range: entry 0% entry 90%; }
+    .path p, .path .path-n { animation: path-text linear both; animation-timeline: view(); animation-range: entry 10% entry 100%; }
+  }
+}
+@keyframes path-word { from { transform: translateX(14vw); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes path-text { from { transform: translateY(14px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 /* ---------- Áreas ---------- */
 
 .areas { padding: clamp(80px, 10vw, 144px) 0; }
@@ -510,13 +517,11 @@ section > .wrap > h2, .partners-intro h2, .contact h2 {
 /* ---------- Rodapé ---------- */
 
 .foot { border-top: 1px solid var(--line); padding: clamp(40px, 6vw, 72px) 0 48px; font-size: 0.875rem; color: var(--ink-soft); }
-.foot-mark {
-  display: flex; align-items: center; gap: 0.35em; flex-wrap: wrap;
-  font-family: var(--display); font-weight: 700;
-  font-size: clamp(1.75rem, 5.1vw, 4.25rem); line-height: 1; letter-spacing: -0.02em;
-  color: var(--ink); text-decoration: none;
-}
-.foot-symbol { width: 0.95em; height: 0.95em; flex: none; }
+/* o mesmo lockup do topo, um pouco maior */
+.lockup-foot { gap: 14px; }
+.lockup-foot .lockup-mark { width: 44px; height: 44px; }
+.lockup-foot .lockup-gpm { font-size: 1.625rem; }
+.lockup-foot .lockup-sub { font-size: 0.75rem; }
 .foot-legal { display: grid; gap: 10px; max-width: 62ch; margin-top: clamp(28px, 4vw, 48px); }
 
 /* Barra fixa no celular */
@@ -560,9 +565,10 @@ section > .wrap > h2, .partners-intro h2, .contact h2 {
   .lockup-sub { font-size: 0.6875rem; letter-spacing: 0.12em; }
 
   .hero {
-    --cx: 50vw; --cy: calc(100dvh - 48vw); --r: 42vw;
+    /* a lente encosta no rodapé da tela e encolhe (--lens-k, medido no JS) para nunca cobrir o texto e os botões */
+    --cx: 50vw; --r: calc(42vw * var(--lens-k, 1)); --cy: calc(100dvh - 6vw - var(--r));
     --W: max(250vw, 132dvh);
-    --fx: 50vw; --fy: 46dvh; --s: 0.59;
+    --fx: 50vw; --fy: 46dvh; --s: calc(0.59 * var(--lens-k, 1));
     padding-top: calc(var(--top-h) + 20px);
   }
   /* no celular, o texto de apoio sai de cena enquanto a foto abre; só o título fica sobre as duas */
@@ -586,9 +592,15 @@ section > .wrap > h2, .partners-intro h2, .contact h2 {
   .person-text { margin-top: calc(var(--name) * -0.9); }
   .person h3 { max-width: none; }
 
-  .path { min-height: 48vh; }
-  .path-row { grid-template-columns: 1fr; gap: 10px; }
-  .path p { padding-bottom: 0; }
+  .path-row { grid-template-columns: 1fr; gap: 10px; padding-top: 20px; padding-bottom: 28px; }
+  .path-n { padding-bottom: 0; }
+  .path p { padding-bottom: 0; margin-left: 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .path h3 { animation-range: entry 0% entry 70%; }
+      .path p, .path .path-n { animation-range: entry 10% entry 80%; }
+    }
+  }
 
   .familia { padding: 48px 0 210px; }
   .familia-mark { width: 240px; right: -70px; bottom: -36px; }
@@ -602,7 +614,7 @@ section > .wrap > h2, .partners-intro h2, .contact h2 {
 
 /* celular deitado: a abertura não fixa (janela baixa), então a lente volta para a direita do texto */
 @media (max-width: 767px) and (max-height: 599px) and (orientation: landscape) {
-  .hero { --cx: 78vw; --cy: 54dvh; --r: min(38vmin, 21vw); }
+  .hero { --cx: 78vw; --cy: 54dvh; --r: min(38vmin, 21vw); --s: 0.59; }
   .hero h1 { font-size: clamp(1.875rem, 5.5vw, 3rem); }
   .lede { max-width: 38ch; font-size: 1rem; }
   .hero-actions .btn { flex: 0 1 auto; }
@@ -611,7 +623,7 @@ section > .wrap > h2, .partners-intro h2, .contact h2 {
 @media (prefers-reduced-motion: reduce) {
   .js .reveal { opacity: 1; transform: none; transition: opacity 200ms ease; }
   .js .reveal-mask { clip-path: none; transform: none; transition: none; }
-  .path h3, .btn-ghost .ico, .bubble, .bubble p { transition: none; }
+  .path h3, .path-n, .path p, .btn-ghost .ico, .bubble, .bubble p { transition: none; }
   .s-band polygon { transition: none; }
   .familia { --band-offset: 0; }
 }
